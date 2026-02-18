@@ -1,0 +1,60 @@
+# Results (keep examples)
+results/*.json
+results/*.png
+results/*.txt
+!results/.gitkeep
+
+# Keep CSV benchmark metrics for reference
+# results/*.csv
+
+# Python
+analysis/venv/
+analysis/__pycache__/
+analysis/*.pyc
+*.py[cod]
+*$py.class
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.sum
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+
+# Docker
+.dockerignore
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+# Logs
+*.log
+logs/

@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  nodejs-express:
+    build: ./services/nodejs-express
+    container_name: benchmark-express
+    ports:
+      - "3001:3000"
+    environment:
+      - PORT=3000
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 512M
+    restart: unless-stopped
+
+  nodejs-fastify:
+    build: ./services/nodejs-fastify
+    container_name: benchmark-fastify
+    ports:
+      - "3002:3000"
+    environment:
+      - PORT=3000
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 512M
+    restart: unless-stopped
+
+  go-fiber:
+    build: ./services/go-fiber
+    container_name: benchmark-fiber
+    ports:
+      - "3003:3000"
+    environment:
+      - PORT=3000
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 512M
+    restart: unless-stopped
+
+  go-gin:
+    build: ./services/go-gin
+    container_name: benchmark-gin
+    ports:
+      - "3004:3000"
+    environment:
+      - PORT=3000
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 512M
+    restart: unless-stopped
+
+  rust-actix:
+    build: ./services/rust-actix
+    container_name: benchmark-actix
+    ports:
+      - "3005:3000"
+    environment:
+      - PORT=3000
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 512M
+    restart: unless-stopped
+
+  rust-axum:
+    build: ./services/rust-axum
+    container_name: benchmark-axum
+    ports:
+      - "3006:3000"
+    environment:
+      - PORT=3000
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 512M
+    restart: unless-stopped

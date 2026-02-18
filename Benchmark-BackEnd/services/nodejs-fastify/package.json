@@ -1,0 +1,12 @@
+{
+  "name": "benchmark-fastify",
+  "version": "1.0.0",
+  "description": "Fastify benchmark service",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "fastify": "^4.25.2"
+  }
+}
