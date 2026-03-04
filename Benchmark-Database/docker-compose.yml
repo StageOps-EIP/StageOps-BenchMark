@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  couchdb:
+    image: couchdb:3.3
+    container_name: stageops-couchdb
+    restart: unless-stopped
+    ports:
+      - "5984:5984"
+    environment:
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: password
+    volumes:
+      - couchdb_data:/opt/couchdb/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5984/_up"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Initialization container: creates the benchmark database
+  couchdb-init:
+    image: curlimages/curl:latest
+    container_name: stageops-couchdb-init
+    depends_on:
+      couchdb:
+        condition: service_healthy
+    entrypoint: >
+      sh -c '
+        echo "Creating benchmark database...";
+        curl -s -X PUT http://admin:password@couchdb:5984/stageops_bench;
+        echo "";
+        echo "Enabling CORS...";
+        curl -s -X PUT http://admin:password@couchdb:5984/_node/_local/_config/httpd/enable_cors -d "\"true\"";
+        curl -s -X PUT http://admin:password@couchdb:5984/_node/_local/_config/cors/origins -d "\"*\"";
+        curl -s -X PUT http://admin:password@couchdb:5984/_node/_local/_config/cors/methods -d "\"GET, PUT, POST, HEAD, DELETE\"";
+        curl -s -X PUT http://admin:password@couchdb:5984/_node/_local/_config/cors/headers -d "\"accept, authorization, content-type, origin, referer\"";
+        echo "";
+        echo "CouchDB initialized successfully.";
+      '
+    restart: "no"
+
+volumes:
+  couchdb_data:
+    driver: local

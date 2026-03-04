@@ -1,0 +1,46 @@
+{
+  "name": "stageops-benchmark",
+  "version": "1.0.0",
+  "description": "Benchmark suite for offline-first database synchronization technologies",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "bench": "ts-node src/index.ts",
+    "lint": "eslint 'src/**/*.ts'",
+    "format": "prettier --write 'src/**/*.ts'",
+    "format:check": "prettier --check 'src/**/*.ts'",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down -v"
+  },
+  "keywords": [
+    "benchmark",
+    "offline-first",
+    "sync",
+    "pouchdb",
+    "couchdb",
+    "watermelondb",
+    "crdt",
+    "stageops"
+  ],
+  "author": "StageOps EIP Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/pouchdb": "^6.4.2",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.0.0",
+    "csv-writer": "^1.6.0",
+    "pouchdb": "^8.0.1",
+    "pouchdb-adapter-memory": "^8.0.1",
+    "uuid": "^9.0.0"
+  }
+}
